@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="sec1.Student" table="STUDENT">
+       <id name="id" column="ID" type="integer">
+            <generator class="identity"/>
+       </id>
+    <property name="name" column="NAME" type="string" length="20"></property>
+    </class>
+<one-to-one name="dormitory" class="Dormitory">
+</hibernate-mapping>

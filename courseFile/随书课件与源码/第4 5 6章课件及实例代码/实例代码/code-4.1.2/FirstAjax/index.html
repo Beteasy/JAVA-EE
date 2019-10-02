@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>第一个AJAX程序</title>
+    <script language="javascript">
+       //建立xmlHttp核心对象
+       var xmlHttp;
+       //创建XMLHttpRequest核心对象
+       function createXMLHttp()
+       {
+           //判断当前使用的浏览器类型
+           if(window.XMLHttpRequest)
+           {
+              //表示使用的是FireFox内核的浏览器
+              xmlHttp=new XMLHttpRequest();
+           }else
+           {
+              //表示使用的是IE内核的浏览器
+              xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+           }
+       }
+	   
+       function showMsg()
+       {
+           //建立一个xmlHttp核心对象
+           createXMLHttp();
+           //设置一个请求
+           xmlHttp.open("POST","helloworld.html");
+           //设置请求完成之后处理的回调函数
+           xmlHttp.onreadystatechange=showMsgCallback;
+           //发送请求，不传递任何参数
+           xmlHttp.send(null);
+       }
+	   
+       function showMsgCallback()
+       {
+           if(xmlHttp.readyState==4 && xmlHttp.status==200)       //定义回调函数
+           {
+			  //接受返回的内容
+			  var text=xmlHttp.responseText;
+			  //设置要使用的CSS样式表
+			  //document.getElementById("msg").className="样式表名称";
+			  document.getElementById("msg").innerHTML=text;             
+           }
+       }
+ 
+    </script>
+</head>
+<body>
+<input type="button" value="调用Ajax的内容" onclick="showMsg()"/>
+<span id="msg"></span>
+</body>
+</html>

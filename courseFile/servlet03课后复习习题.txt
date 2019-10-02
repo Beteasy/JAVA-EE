@@ -1,0 +1,32 @@
+部署servlet有两种方式
+方法一：注解方式
+这种方式是在对应的servlet类中添加@WebServlet("url-pattern")注解
+比如我创建了一个MyServlet类，那么我就需要在这个类中添加注解：@WebServlet("/Myservlet")
+
+方法二：web.xml方式
+这种方式是在web.xml中配置<servlet>和<servlet-mapping>。举例如下：
+<servlet>
+ <!-- servlet的内部名称，自定义 -->
+    <servlet-name>a</servlet-name>
+<!-- servlet的类全名：包名+类名 -->
+    <servlet-class>com.PageDisplay</servlet-class>
+</servlet>
+<!-- servlet的映射配置 -->
+<servlet-mapping>
+ <!-- servlet的内部名称，一定要和上面的内部名称保持一致 -->
+    <servlet-name>a</servlet-name>
+ <!-- servlet的映射路径（访问servlet的名称 -->
+    <url-pattern>/PageDisplay</url-pattern>
+</servlet-mapping>
+
+两种方式对比：
+注解方式：
+优点：代码量少，配置简单，简洁明了。从上面我们可以看到，注解方式只需要一行代码就可以解决，非常简单，易于理解。
+缺点：这种方式只适用于servlet类比较少的情况，当servlet类比较多的时候，就不便于统一的管理。
+
+web.xml方式：
+优点：每个servlet类的配置都在一个web.xml文件中，便于servlet类的统一管理。
+缺点：代码量多，配置繁杂，不易于理解。
+
+我更喜欢用注解方式，注解方式很简单，只需一行代码，不需要像配置web.xml那样很复杂。注解方式代码少，可读性强，易于理解。
+但是最终采取哪种方式还要看具体的情况，因为没有最好的方法，只有最合适的方法。

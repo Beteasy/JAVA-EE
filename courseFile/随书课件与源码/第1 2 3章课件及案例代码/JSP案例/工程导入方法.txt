@@ -1,0 +1,3 @@
+
+1.在Eclipse中新建动态Web工程JSPTest。方法：在“Project Explorer”空白处右击，选择"new"-“Dynamic Web Project”-输入工程名“JSPTest”。
+2.右击JSPTest工程，选择“import”-“File System”-选择JSPTest文件夹-finish即可。

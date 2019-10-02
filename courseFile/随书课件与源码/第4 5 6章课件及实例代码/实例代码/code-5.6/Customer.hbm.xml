@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="hibernate.ch05">
+    <class name="Customer" table="CUSTOMERS">
+       <id name="id" column="ID" type="integer">
+            <generator class="identity"/>
+       </id>
+    <property name="username" column="NAME" type="string" length="20"></property>
+<property name="password" column="PASSWORD" type="string" length="20"></property>
+    </class>
+</hibernate-mapping>

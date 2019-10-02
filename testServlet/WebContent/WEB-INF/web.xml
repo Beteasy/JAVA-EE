@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>testServlet</display-name>
+  <!-- 说明servl|et类 -->
+  <servlet>
+  	<!--servlet类的别名  -->
+  	<servlet-name>
+  		FirstSimpleServlet
+  	</servlet-name>
+  	<!-- servlet类的全名，包括所属的包名 -->
+  	<servlet-class>testServlet.FirstSimpleServlet</servlet-class>
+  </servlet>
+  
+  <!-- 说明Servlet类与访问地址的映射 -->
+  <servlet-mapping>
+  	<!-- servlet类的别名，包括所属的包名 -->
+  	<servlet-name>FirstSimpleServlet</servlet-name>
+  	<!-- 访问servlet类的地址 -->
+  	<url-pattern>/myurl</url-pattern>	<!-- 这个myurl是什么 -->		<!-- 访问页面时用这个url -->
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
