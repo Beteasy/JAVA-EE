@@ -1,0 +1,18 @@
+use javaeetest;
+insert into users values('1','lb','刘备','root','0','0');
+insert into users values('2','zgl','诸葛亮','zgl','0','0');
+insert into users values('3','gy','关羽','gy','0','0');
+insert into users values('4','zf','张飞','zf','0','0');
+insert into users values('5','cc','曹操','cc','0','0');
+insert into users values('6','dc','貂蝉','dc','1','0');
+insert into users values('7','xq','小乔','xq','1','0');
+insert into users values('8','dq','大乔','dq','1','0');
+insert into users values('9','zy','赵云','zy','0','0');
+insert into users values('10','lvbu','吕布','lvbu','0','0');
+insert into users values('11','xz','许诸','xz','0','0');
+insert into users values('12','xc','刘婵','xc','0','0');
+select * from users;
+update users set loginName='lc',password='lc' where id=12; 
+update users set password='lc' where id=12; 
+select * from users where userName like '%刘%';
+delete from users where id=13;

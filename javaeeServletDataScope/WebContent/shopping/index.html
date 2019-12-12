@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" /> 
+		<title>主页面</title>
+	</head>
+	<body>
+		<h1>产品信息</h1>
+		<table width="400" border="1">
+		   <th>序号</th><th>产品名称</th><th>价格(元)</th>
+		   <tr><td>1</td><td>海信电视机</td><td>6999.00</td></tr>
+		   <tr><td>2</td><td>海尔洗衣机</td><td>3999.00</td></tr>
+		   <tr><td>3</td><td>格力空调</td><td>3269.00</td></tr>
+		   <tr><td>4</td><td>海尔热水器</td><td>2780.00</td></tr>
+		   <tr><td>5</td><td>西门子冰箱</td><td>2780.00</td></tr>
+		</table>
+		<br>
+		<form action="/javaeeServletDataScope/addServlet" name="form1">
+			输入您要购买的产品名称:<br>
+			<input type="text" name="product">
+			<input type="submit" value="添加购物车">
+		</form>
+		<form action="/javaeeServletDataScope/shoppingServlet" name="form2">
+			<input type="submit" value="查看购物车">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Created-By: 11.0.4 (AdoptOpenJDK 11.0.4+11)
+Built-By: JUnit Team
+Build-Date: 2019-10-21
+Build-Time: 21:09:16.196+0200
+Build-Revision: cc4f866a052f514616a9e93bded9564f630327ed
+Specification-Title: junit-jupiter-api
+Specification-Version: 5.6.0
+Specification-Vendor: junit.org
+Implementation-Title: junit-jupiter-api
+Implementation-Version: 5.6.0-M1
+Implementation-Vendor: junit.org
+

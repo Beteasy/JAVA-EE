@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>javaeeServletDataScope</display-name>
+	<welcome-file-list>
+	  <welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<!-- 用APP全局ServletContext上的参数配置 -->
+	<servlet>
+		<servlet-name>adminServlet</servlet-name>
+		<servlet-class>servletContextParam.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>adminServlet</servlet-name>
+		<url-pattern>/adminServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>userServlet</servlet-name>
+		<servlet-class>servletContextParam.UserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userServlet</servlet-name>
+		<url-pattern>/userServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用会话上的参数配置 -->
+	<servlet>
+		<servlet-name>addServlet</servlet-name>
+		<servlet-class>httpSessionParam.AddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addServlet</servlet-name>
+		<url-pattern>/addServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>shoppingServlet</servlet-name>
+		<servlet-class>httpSessionParam.ShoppingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shoppingServlet</servlet-name>
+		<url-pattern>/shoppingServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 用请求上的参数配置 -->
+	<servlet>
+		<servlet-name>operServlet</servlet-name>
+		<servlet-class>requestParam.OperServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>operServlet</servlet-name>
+		<url-pattern>/operServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>operTwoServlet</servlet-name>
+		<servlet-class>requestParam.OperTwoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>operTwoServlet</servlet-name>
+		<url-pattern>/operTwoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showServlet</servlet-name>
+		<servlet-class>requestParam.ShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showServlet</servlet-name>
+		<url-pattern>/showServlet</url-pattern>
+	</servlet-mapping>
+
+</web-app>

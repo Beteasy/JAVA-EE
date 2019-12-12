@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="javaeeMVCDemo01-20181206-163-第02次演示">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="jstl.jar" deploy-path="/WEB-INF/lib/">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-5.1.46.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jstl.jar" deploy-path="/WEB-INF/lib/">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="javaeeMVCDemo01-20181206-163-第02次演示"/>
+        <property name="java-output-path" value="/javaeeMVCDemo01-20181206-163-第02次演示/build/classes"/>
+    </wb-module>
+</project-modules>

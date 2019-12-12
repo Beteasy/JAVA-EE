@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="javaeeSpringMVCBasic">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="spring-core-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-core-5.0.7.RELEASE/spring-core-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-logging-1.2/commons-logging-1.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-context-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-context-5.0.7.RELEASE/spring-context-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-beans-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-beans-5.0.7.RELEASE/spring-beans-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-webmvc-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-webmvc-5.0.7.RELEASE/spring-webmvc-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-aop-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-aop-5.0.7.RELEASE/spring-aop-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-aspects-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-aspects-5.0.7.RELEASE/spring-aspects-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-expression-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-expression-5.0.7.RELEASE/spring-expression-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-web-5.0.7.RELEASE.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/spring-web-5.0.7.RELEASE/spring-web-5.0.7.RELEASE">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="javaeeSpringMVCBasic"/>
+        <property name="java-output-path" value="/javaeeSpringMVCBasic/build/classes"/>
+    </wb-module>
+</project-modules>

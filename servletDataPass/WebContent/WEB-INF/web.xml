@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>servletDataPass</display-name>
+<!-- @WebServlet(name = "Top10Servlet", urlPatterns = { "/top10" }) -->
+  <servlet>
+  	<servlet-name>Top10Servlet</servlet-name>
+  	<servlet-class>servletDataPass.url.Top10Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Top10Servlet</servlet-name>
+	<url-pattern>/top10</url-pattern>  
+  </servlet-mapping>
+
+<!-- @WebServlet(name = "CustomerServlet", urlPatterns = { 
+        "/customer", "/editCustomer", "/updateCustomer"}) -->
+  <servlet>
+  	<servlet-name>CustomerServlet</servlet-name>
+  	<servlet-class>servletDataPass.hidden.CustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CustomerServlet</servlet-name>
+	<url-pattern>/customer</url-pattern>  
+	<url-pattern>/editCustomer</url-pattern>  
+	<url-pattern>/updateCustomer</url-pattern>  
+  </servlet-mapping>
+  
+<!-- @WebServlet(name = "CookieClassServlet", 
+        urlPatterns = { "/cookieClass" }) -->
+  <servlet>
+  	<servlet-name>CookieClassServlet</servlet-name>
+  	<servlet-class>servletDataPass.cookie.CookieClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CookieClassServlet</servlet-name>
+	<url-pattern>/cookieClass</url-pattern>  
+  </servlet-mapping>
+<!-- @WebServlet(name = "CookieInfoServlet", urlPatterns = { "/cookieInfo" }) -->
+  <servlet>
+  	<servlet-name>CookieInfoServlet</servlet-name>
+  	<servlet-class>servletDataPass.cookie.CookieInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CookieInfoServlet</servlet-name>
+	<url-pattern>/cookieInfo</url-pattern>  
+  </servlet-mapping>
+<!-- @WebServlet(name = "PreferenceServlet", urlPatterns = { "/preference" }) -->  
+  <servlet>
+  	<servlet-name>PreferenceServlet</servlet-name>
+  	<servlet-class>servletDataPass.cookie.PreferenceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>PreferenceServlet</servlet-name>
+	<url-pattern>/preference</url-pattern>  
+  </servlet-mapping>  
+
+
+<!-- @WebServlet(name = "ShoppingCartServlet", urlPatterns = {
+        "/products", "/viewProductDetails", 
+        "/addToCart", "/viewCart" }) -->
+  <servlet>
+  	<servlet-name>ShoppingCartServlet</servlet-name>
+  	<servlet-class>servletDataPass.session.ShoppingCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ShoppingCartServlet</servlet-name>
+	<url-pattern>/products</url-pattern>				<!-- 所有商品 -->
+	<url-pattern>/viewProductDetails</url-pattern>  	<!-- 详情 -->
+	<url-pattern>/addToCart</url-pattern>  				<!-- 加购物车 -->
+	<url-pattern>/viewCart</url-pattern>  				<!-- 购物车详情 -->
+  </servlet-mapping>
+  
+    
+          
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>servletFilterLifeCycle</display-name>
+<!-- 
+	1 演示时要注意放开的顺序
+	2 配置时要特别注意名字的一致性
+	3 用xml方式配置，更有助于初学者对于生命周期的理解
+   -->
+
+  <filter>
+    <filter-name>MyFilter</filter-name>
+    <filter-class>filter.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MyFilter</filter-name>
+    <url-pattern>/MyFilter</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+<!--   过滤器链 
+	1 FilterChina01在前，先过滤
+	2 FilterChina02在后，后过滤
+	3 01，02，还有ServletForFilterChain用同一个url发请求
+	4 通过对请求过滤，实现对Servlet的过滤操作
+-->
+  <filter>
+  	<filter-name>FilterChina01</filter-name>
+  	<filter-class>filterChain.FilterChain01</filter-class>
+  </filter>
+  <filter-mapping>
+  	 <filter-name>FilterChina01</filter-name>
+  	 <url-pattern>/ServletForFilterChain</url-pattern>
+  </filter-mapping>
+
+  <filter>
+  	<filter-name>FilterChina02</filter-name>
+  	<filter-class>filterChain.FilterChain02</filter-class>
+  </filter> 
+  <filter-mapping>
+  	 <filter-name>FilterChina02</filter-name>
+  	 <url-pattern>/ServletForFilterChain</url-pattern>
+  </filter-mapping> 
+  
+  <listener>
+    <listener-class>listener.OnLineCountListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginAllServlet</servlet-name>
+    <servlet-class>servlet.LoginAllServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginAllServlet</servlet-name>
+    <url-pattern>/servlet/LoginAllServlet</url-pattern>
+  </servlet-mapping>
+   
+  <servlet>
+    <servlet-name>ServletForFilterChain</servlet-name>
+    <servlet-class>filterChain.ServletForFilterChain</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletForFilterChain</servlet-name>
+    <url-pattern>/ServletForFilterChain</url-pattern>
+  </servlet-mapping>
+  
+  
+  <session-config>
+    <session-timeout>1</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

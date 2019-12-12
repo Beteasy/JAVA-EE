@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物城</title>
+	</head>
+	<body>
+		<h1>产品信息</h1>
+		<table width="400" border="1" style="border-collapse:collapse">
+		   <th>序号</th><th>产品名称</th><th>价格(元)</th>
+		   <tr><td>1</td><td>小米9 Pro</td><td>3699.00</td></tr>
+		   <tr><td>2</td><td>小米MIX Alpha</td><td>19999.00</td></tr>
+		   <tr><td>3</td><td>RedmiBook 14</td><td>3999.00</td></tr>
+		   <tr><td>4</td><td>小米游戏本</td><td>7499.00</td></tr>
+		</table>
+		<br>
+		<form action="../addServlet" name="buyForm" method="post">
+			输入您要购买的产品名称:<br>
+			<input type="text" name="productID">
+			<input type="submit" value="添加购物车">
+		</form>
+		<form action="../shoppingServlet" name="cartForm" method="post">
+			<input type="submit" value="查看购物车">
+		</form>
+	</body>
+</html>
