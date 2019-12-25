@@ -1,10 +1,11 @@
+<%@page import="com.entity.Course"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.entity.JiaTiao"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.entity.Student"%>
-<%@page import="java.util.List"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -86,6 +87,7 @@
 <%
 			PrintWriter writer = response.getWriter();
 			List<JiaTiao> jiaTiaoList = (ArrayList<JiaTiao>)request.getAttribute("jiaTiaoList");
+			List<Course> courseList = (ArrayList<Course>)session.getAttribute("courseList");
 			//System.out.print(jiaTiaoList.size());
 			int jiaTiaoNumber = jiaTiaoList.size();	//假条的总数
 			int pageSize = 3;	//每页显示3个
@@ -109,11 +111,15 @@
 			
 			int startIndex = (pageNum-1)*pageSize;	//计算每页开始显示的下标
 			String status = null;    //记录假条状态
-			String course = null; 	 //记录课程名称
+			String courseName = null; 	 //记录课程名称
+			Integer courseNo = null;
 			//做界面显示的转换
 			String type = null;
 			
 			String range = request.getParameter("range");
+			
+			
+			
 		%>
 		
     <!-- ============================================================== -->
@@ -194,17 +200,19 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByGrade.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">查询年级学生出勤记录</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByStu.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">查询学生出勤记录</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/piJia.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Map</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span></a></li>
+						<li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a>
+                        	<ul>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=all">所有假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=unsanctioned">待批准假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=sanctioned">已批准假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=failed">审批不通过假条</a></li>
+                        	</ul>
+                        </li>
+                       
                     </ul>
-                    <div class="text-center m-t-30">
-                        <a href="#" class="btn waves-effect waves-light btn-info hidden-md-down"> Upgrade to Pro</a>
-                    </div>
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -263,7 +271,15 @@
                         for(int i=startIndex; i<startIndex+pageSize && i<jiaTiaoNumber; i++){
         					System.out.print(i);
         					jiaTiao = jiaTiaoList.get(i);
-        					
+        					courseNo = jiaTiao.getCourNo();
+        					Iterator iterator = courseList.iterator();
+        					while(iterator.hasNext()){
+        						Course course = (Course)iterator.next();
+        						if(course.getCourNo() == courseNo){
+        							courseName = course.getCourName();
+        							break;
+        						}
+        					}
         					
         					
         					switch(jiaTiao.getType()){
@@ -297,7 +313,7 @@
                             <td><%=jiaTiao.getStuName()%></td>
                             <td><%=jiaTiao.getGrade()%></td>
                             <td><%=jiaTiao.getClassId()%></td>
-                            <td><%=jiaTiao.getCourNo()%></td>
+                            <td><%=courseName%></td>
                             <td><%=type%></td>
                             <td><%=jiaTiao.getStartdate()%></td>
                             <td><%=jiaTiao.getEnddate()%></td>

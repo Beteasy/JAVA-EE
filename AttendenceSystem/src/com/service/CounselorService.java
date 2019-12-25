@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.daoImpl.CounselorDaoImpl;
 import com.entity.Counselor;
+import com.entity.Course;
 import com.entity.JiaTiao;
 import com.entity.KaoQin;
 
@@ -23,27 +24,27 @@ public class CounselorService {
 		return kaoQinList;
 	}
 	
-	public List<JiaTiao> getAllJiaTiao(){
+	public List<JiaTiao> getAllJiaTiao(Integer grade){
 		List<JiaTiao> jiaTiaoList = null;
-		jiaTiaoList = counselorDaoImpl.getAllJiaTiao();
+		jiaTiaoList = counselorDaoImpl.getAllJiaTiao(grade);
 		return jiaTiaoList;
 	}
 	
-	public List<JiaTiao> getSanctionedJiaTiao(){
+	public List<JiaTiao> getSanctionedJiaTiao(Integer grade){
 		List<JiaTiao> jiaTiaoList = null;
-		jiaTiaoList = counselorDaoImpl.getSanctionedJiaTiao();
+		jiaTiaoList = counselorDaoImpl.getSanctionedJiaTiao(grade);
 		return jiaTiaoList;
 	}
 	
-	public List<JiaTiao> getUnSanctionedJiaTiao(){
+	public List<JiaTiao> getUnSanctionedJiaTiao(Integer grade){
 		List<JiaTiao> jiaTiaoList = null;
-		jiaTiaoList = counselorDaoImpl.getUnSanctionedJiaTiao();
+		jiaTiaoList = counselorDaoImpl.getUnSanctionedJiaTiao(grade);
 		return jiaTiaoList;
 	}
 	
-	public List<JiaTiao> getFailedJiaTiao(){
+	public List<JiaTiao> getFailedJiaTiao(Integer grade){
 		List<JiaTiao> jiaTiaoList = null;
-		jiaTiaoList = counselorDaoImpl.getFailedJiaTiao();
+		jiaTiaoList = counselorDaoImpl.getFailedJiaTiao(grade);
 		return jiaTiaoList;
 	}
 	
@@ -67,5 +68,12 @@ public class CounselorService {
 		Counselor counselor = null;
 		counselor = counselorDaoImpl.getCounselorInfo(counNo);
 		return counselor;
+	}
+
+	public List<Course> getCourse() {
+		// TODO Auto-generated method stub
+		List<Course> courseList = null;
+		courseList = counselorDaoImpl.getCourse();
+		return courseList;
 	}
 }

@@ -5,6 +5,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.entity.Student"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -162,17 +163,19 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByGrade.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">查询年级学生出勤记录</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByStu.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">查询学生出勤记录</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/piJia.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Map</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span></a></li>
-                    </ul>
-                    <div class="text-center m-t-30">
-                        <a href="#" class="btn waves-effect waves-light btn-info hidden-md-down"> Upgrade to Pro</a>
-                    </div>
+                        <li><a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a>
+                        <!-- /AttendenceSystem/counselorInput/piJia.jsp -->
+                        	<ul>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=all">所有假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=unsanctioned">待批准假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=sanctioned">已批准假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=failed">审批不通过假条</a></li>
+                        	</ul>
+                        </li>
+                        </ul>
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -186,11 +189,11 @@
         <!-- ============================================================== -->
         
         <!-- 以下为修改内容 -->
-                <div class="page-wrapper">
+        <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
- <div class='row-fluid'>
+ 				<div class='row-fluid'>
                     <div class='span12 box'>
                         <div class='box-header blue-background'>
                             <div class='title'>考勤查询</div>
@@ -219,10 +222,12 @@
                                 <div class='control-group'>
                                     <label class='control-label' for='validation_select'>课程</label>
                                     <div class='controls'>
+                                    	
                                         <select  name="course">
-                                            <option value ="1">Java SE</option>
-					  						<option value ="2">Java EE</option>
-					  						<option value="3">C语言</option>
+                                        	<c:forEach items="${sessionScope.courseList}" var="course">
+                                        		 <option value ="${course.courNo }">${course.courName }</option>
+                                        	</c:forEach>
+                                          
                                         </select>
                                     </div>
                                 </div>
@@ -251,7 +256,7 @@
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-    </div>
+    <!-- </div> -->
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->

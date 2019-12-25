@@ -1,4 +1,4 @@
-package com.controller.counselor;
+	package com.controller.counselor;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.entity.Counselor;
 import com.entity.JiaTiao;
 import com.entity.KaoQin;
 import com.mysql.cj.xdevapi.Result;
@@ -49,6 +51,9 @@ public class PiJiaController extends HttpServlet {
 		CounselorService counselorService = new CounselorService();
 		
 		String action = request.getParameter("action");
+		HttpSession session = request.getSession();
+		Counselor counselor = (Counselor) session.getAttribute("counselor");
+		Integer grade = counselor.getGrade();
 		System.out.println("action:"+action);
 		if (action.equalsIgnoreCase("search")) {
 			String range = request.getParameter("range");
@@ -58,16 +63,16 @@ public class PiJiaController extends HttpServlet {
 			JiaTiao jiaTiao = null;
 			switch (range) {
 			case "all":
-				jiaTiaoList = counselorService.getAllJiaTiao();
+				jiaTiaoList = counselorService.getAllJiaTiao(grade);
 				break;
 			case "sanctioned":
-				jiaTiaoList = counselorService.getSanctionedJiaTiao();
+				jiaTiaoList = counselorService.getSanctionedJiaTiao(grade);
 				break;
 			case "unsanctioned":
-				jiaTiaoList = counselorService.getUnSanctionedJiaTiao();
+				jiaTiaoList = counselorService.getUnSanctionedJiaTiao(grade);
 				break;
 			case "failed":
-				jiaTiaoList = counselorService.getFailedJiaTiao();
+				jiaTiaoList = counselorService.getFailedJiaTiao(grade);
 				break;
 			case "id":
 				idString = request.getParameter("id");

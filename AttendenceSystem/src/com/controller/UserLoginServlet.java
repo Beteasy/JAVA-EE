@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import com.DBUtils.DBUtils;
 
 import com.dao.UserDao;
 import com.entity.Counselor;
+import com.entity.Course;
 import com.entity.User;
 import com.service.CounselorService;
 @WebServlet("/UserLoginServlet")
@@ -55,8 +57,12 @@ public class UserLoginServlet extends HttpServlet {
 				if( user.getPermission() == 3 ) {
 					CounselorService counselorService = new CounselorService();
 					Counselor counselor = null;
+					List<Course> courseList = null;
 					counselor = counselorService.getCounselorInfo(user.getUseNo());
+					courseList = counselorService.getCourse();
+//					System.out.println("userloginservlet:"+courseList.toString());
 					session.setAttribute("counselor", counselor);
+					session.setAttribute("courseList", courseList);
 					request.getRequestDispatcher("/functionPage/counselorFunction.jsp").forward(request, response);
 				}
 			}

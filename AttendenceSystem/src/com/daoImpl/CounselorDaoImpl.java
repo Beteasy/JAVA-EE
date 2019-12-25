@@ -9,8 +9,10 @@ import java.util.List;
 import com.DBUtils.DBUtils;
 import com.dao.CounselorDao;
 import com.entity.Counselor;
+import com.entity.Course;
 import com.entity.JiaTiao;
 import com.entity.KaoQin;
+import com.mysql.cj.Session;
 
 public class CounselorDaoImpl implements CounselorDao{
 	
@@ -67,20 +69,49 @@ public class CounselorDaoImpl implements CounselorDao{
 		
 		try {
 			connection = DBUtils.getConnection();
+			
+//			if (courseNo == 0) {
+//
+//				sql = "select * from attendance where stuNo=? and arriveTime like concat('%',?,'%')";
+//				preparedStatement = connection.prepareStatement(sql);
+//				preparedStatement.setInt(1, stuNo);
+//				preparedStatement.setString(2, dateString);
+//			}
+//			else {
+//
+//				sql = "select * from attendance where stuNo=? and arriveTime like concat('%',?,'%') and courNo=?";
+//				preparedStatement = connection.prepareStatement(sql);
+//				preparedStatement.setInt(1, stuNo);
+//				preparedStatement.setString(2, dateString);
+//				preparedStatement.setInt(3, courseNo);
+//			}
 			if (courseNo == 0) {
-
-				sql = "select * from attendance where stuNo=? and arriveTime like concat('%',?,'%')";
-				preparedStatement = connection.prepareStatement(sql);
-				preparedStatement.setInt(1, stuNo);
-				preparedStatement.setString(2, dateString);
+				if (dateString.equals("")) {
+					sql = "select * from attendance where stuNo=?";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setInt(1, stuNo);
+				}else {
+					sql = "select * from attendance where stuNo=? and arriveTime like concat('%',?,'%')";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setInt(1, stuNo);
+					preparedStatement.setString(2, dateString);
+				}
+				
 			}
 			else {
-
-				sql = "select * from attendance where stuNo=? and arriveTime like concat('%',?,'%') and courNo=?";
-				preparedStatement = connection.prepareStatement(sql);
-				preparedStatement.setInt(1, stuNo);
-				preparedStatement.setString(2, dateString);
-				preparedStatement.setInt(3, courseNo);
+				if (dateString.equals("")) {
+					sql = "select * from attendance where stuNo=? and courNo=?";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setInt(1, stuNo);
+					preparedStatement.setInt(2, courseNo);
+				}else {
+					sql = "select * from attendance where stuNo=? and arriveTime like concat('%',?,'%') and courNo=?";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setInt(1, stuNo);
+					preparedStatement.setString(2, dateString);
+					preparedStatement.setInt(3, courseNo);
+				}
+				
 			}
 			
 			resultSet = preparedStatement.executeQuery();
@@ -108,16 +139,17 @@ public class CounselorDaoImpl implements CounselorDao{
 	}
 
 	@Override
-	public List<JiaTiao> getAllJiaTiao() {
+	public List<JiaTiao> getAllJiaTiao(Integer grade) {
 		// TODO Auto-generated method stub
 		String sql = null;
 		JiaTiao jiaTiao = null;
 		List<JiaTiao> jiaTiaoList = new ArrayList<JiaTiao>();
-		sql = "select * from dayoff";
+		sql = "select * from dayoff where grade=?";
 		
 		try {
 			connection = DBUtils.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, grade);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				jiaTiao = new JiaTiao();
@@ -146,16 +178,17 @@ public class CounselorDaoImpl implements CounselorDao{
 	}
 
 	@Override
-	public List<JiaTiao> getSanctionedJiaTiao() {
+	public List<JiaTiao> getSanctionedJiaTiao(Integer grade) {
 		// TODO Auto-generated method stub
 		String sql = null;
 		JiaTiao jiaTiao = null;
 		List<JiaTiao> jiaTiaoList = new ArrayList<JiaTiao>();
-		sql = "select * from dayoff where status=1";
+		sql = "select * from dayoff where status=1 and grade=?";
 		
 		try {
 			connection = DBUtils.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, grade);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				jiaTiao = new JiaTiao();
@@ -184,16 +217,17 @@ public class CounselorDaoImpl implements CounselorDao{
 	}
 
 	@Override
-	public List<JiaTiao> getUnSanctionedJiaTiao() {
+	public List<JiaTiao> getUnSanctionedJiaTiao(Integer grade) {
 		// TODO Auto-generated method stub
 		String sql = null;
 		JiaTiao jiaTiao = null;
 		List<JiaTiao> jiaTiaoList = new ArrayList<JiaTiao>();
-		sql = "select * from dayoff where status=0";
+		sql = "select * from dayoff where status=0 and grade=?";
 		
 		try {
 			connection = DBUtils.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, grade);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				jiaTiao = new JiaTiao();
@@ -222,16 +256,17 @@ public class CounselorDaoImpl implements CounselorDao{
 	}
 
 	@Override
-	public List<JiaTiao> getFailedJiaTiao() {
+	public List<JiaTiao> getFailedJiaTiao(Integer grade) {
 		// TODO Auto-generated method stub
 		String sql = null;
 		JiaTiao jiaTiao = null;
 		List<JiaTiao> jiaTiaoList = new ArrayList<JiaTiao>();
-		sql = "select * from dayoff where status=2";
+		sql = "select * from dayoff where status=2 and grade=?";
 		
 		try {
 			connection = DBUtils.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, grade);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				jiaTiao = new JiaTiao();
@@ -379,6 +414,33 @@ public class CounselorDaoImpl implements CounselorDao{
 		}
 		System.out.println("dao  counselor:"+counselor);
 		return counselor;
+	}
+
+	public List<Course> getCourse() {
+		// TODO Auto-generated method stub
+		String sql = "select * from course";
+		Course course = null;
+		List<Course> courseList = new ArrayList<Course>();
+		try {
+			connection = DBUtils.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+//				System.out.println("Dao:"+resultSet.getInt("courNo"));
+				course = new Course();
+				course.setCourNo(resultSet.getInt("courNo"));
+				course.setCourName(resultSet.getString("courName"));
+//				System.out.println("DAO:"+course.toString());
+				courseList.add(course);
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			DBUtils.releaseResource(connection, preparedStatement, resultSet);
+		}
+		return courseList;
 	}
 
 }

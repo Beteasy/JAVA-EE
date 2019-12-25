@@ -1,3 +1,7 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.entity.Course"%>
+<%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.entity.KaoQin"%>
@@ -5,6 +9,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.entity.Student"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -86,9 +92,10 @@
 <%
 			PrintWriter writer = response.getWriter();
 			List<KaoQin> studentList = (ArrayList<KaoQin>)request.getAttribute("kaoQinList");
+			List<Course> courList = (ArrayList<Course>)session.getAttribute("courseList");
 			//System.out.print(studentList.size());
 			int studentsNumber = studentList.size();	//学生的总数
-			int pageSize = 1;	//每页显示3个
+			int pageSize = 3;	//每页显示3个
 			int pageCount = (studentsNumber-1)/pageSize+1;	//计算需要显示多少页
 			int pageNum = 1;	//待显示的页面
 			int currentPage;
@@ -109,7 +116,7 @@
 			
 			int startIndex = (pageNum-1)*pageSize;	//计算每页开始显示的下标	
 			String status = null;    //记录学生的考勤状态
-			String course = null; 	 //记录课程名称
+			String courseName = null; 	 //记录课程名称
 			String type = null;		//拿到按什么查询
 			String date = null;		//拿到查询的日期
 			Integer grade = null;	//存年级
@@ -118,7 +125,14 @@
 			type = request.getParameter("type");
 			date = request.getParameter("date");
 			courseNo = Integer.parseInt(request.getParameter("course"));
-			
+			Iterator iterator = courList.iterator();
+			Map<String,String> map = null;
+			map = new HashMap<String,String>();
+			while(iterator.hasNext()){
+				Course course = (Course)iterator.next();
+							
+				map.put(String.valueOf(course.getCourNo()), String.valueOf(course.getCourName()));
+			}
 		%>
 		
     <!-- ============================================================== -->
@@ -202,14 +216,17 @@
                         <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByGrade.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">查询年级学生出勤记录</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByStu.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">查询学生出勤记录</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/piJia.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Map</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a>
+                        	<ul>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=all">所有假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=unsanctioned">待批准假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=sanctioned">已批准假条</a></li>
+                        		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=failed">审批不通过假条</a></li>
+                        	</ul>
+                        </li>
+                       
                     </ul>
-                    <div class="text-center m-t-30">
-                        <a href="#" class="btn waves-effect waves-light btn-info hidden-md-down"> Upgrade to Pro</a>
-                    </div>
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -263,6 +280,11 @@
                         <%
 							for(int i=startIndex; i<startIndex+pageSize && i<studentsNumber; i++){
 							student = studentList.get(i);
+							//courseNo = student.getCourNo();
+							String CN = String.valueOf(student.getCourNo());
+							courseName = (String)map.get(CN);
+        						System.out.println("view coursename:"+courseName);
+							
 							switch(student.getStatus()){
 						case 0:
 						status = "到勤";
@@ -285,7 +307,7 @@
                             <td><%=student.getStuName()%></td>
                             <td><%=student.getGrade()%></td>
                             <td><%=student.getClassId()%></td>
-                            <td><%=student.getCourNo()%></td>
+                            <td><%=courseName%></td>
                             <td><%=student.getDate()%></td>
                             <%
 								if(student.getStatus()==0){

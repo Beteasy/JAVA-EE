@@ -114,7 +114,6 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByGrade.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">查询年级学生出勤记录</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/searchAttenByStu.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">查询学生出勤记录</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="/AttendenceSystem/counselorInput/piJia.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">请假审批</span></a>
@@ -125,13 +124,8 @@
                         		<li><a href="/AttendenceSystem/PiJiaController?action=search&range=failed">审批不通过假条</a></li>
                         	</ul>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="../map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Map</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">404</span></a></li>
-                    </ul>
-                    <div class="text-center m-t-30">
-                        <a href="#" class="btn waves-effect waves-light btn-info hidden-md-down"> Upgrade to Pro</a>
-                    </div>
+                        </ul>
+                   
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>

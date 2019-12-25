@@ -58,7 +58,7 @@ public class JiaTiaoController extends HttpServlet {
 			JiaTiao jiaTiao = null;
 			switch (range) {
 			case "all":
-				jiaTiaoList = counselorService.getAllJiaTiao();
+//				jiaTiaoList = counselorService.getAllJiaTiao();
 				break;
 			case "id":
 				idString = request.getParameter("id");

@@ -48,15 +48,15 @@ public class SearchAttenByStuController extends HttpServlet {
 		String stuNoString = request.getParameter("stuNo");
 		Integer stuNo = Integer.parseInt(stuNoString);
 		String dateString = request.getParameter("date");
-		System.out.println("controller:"+dateString);
+		System.out.println("controller datestring:"+dateString);
 		String courseNoString = request.getParameter("course");
 		Integer courseNo = Integer.parseInt(courseNoString);
-		System.out.println("controller:"+courseNo);
+//		System.out.println("controller:"+courseNo);
 		
 		CounselorService counselorService = new CounselorService();
 		List<KaoQin> kaoQinList = null;
 		kaoQinList = counselorService.searchAttenByStu(stuNo,dateString,courseNo);
-		System.out.println("controller:"+kaoQinList.toString());
+//		System.out.println("controller:"+kaoQinList.toString());
 		request.setAttribute("kaoQinList", kaoQinList);
 		request.getRequestDispatcher("show/showAttenByPage.jsp?type=student&stuNo="+stuNo+"&date="+dateString+"&course="+courseNo).forward(request, response);
 	}
